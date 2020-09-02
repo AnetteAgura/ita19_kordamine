@@ -1,17 +1,56 @@
-class album():
-    def __init__(self, albumiNimi):
-        self.albumiNimi = albumiNimi
+class plaat():
+    """
+    Klass, mis kirjeldab plaati/albumit.
+    Omadused:
+        plaadNimi (str): plaadi nimi
+    """
+    def __init__(self, plaadiNimi):
+        self.plaadiNimi = plaadiNimi
 
 
 class laulud():
+    """
+    Klass, mis kirjeldab laule.
+    Omadused:
+        lauluNimi (str): laulu nimi
+    """
     def __init__(self, lauluNimi):
         self.lauluNimi = lauluNimi
 
 
 class esitaja():
+    """
+    Klass, mis kirjeldab esitajat.
+    Omadused:
+        esitajaNimi (str): esitaja nimi
+    """
     def __init__(self, esitajaNimi):
         self.esitajaNimi = esitajaNimi
 
+
+b = input("Kas soovid lisada vinüülplaatide nimekirja albumit? jah/ei ")
+
+if b == "jah":
+    seis = "aktiivne"
+    grupp = esitaja(input("Sisestage esitaja nimi: "))
+    album = plaat(input("Sisestage albumi nimi: "))
+    aasta = input("Sisestage aasta: ")
+    while seis == "aktiivne":
+
+        laul = laulud(input("Sisestage laulu pealkiri:"))
+        laulupealkiri = grupp.esitajaNimi.title() + "\t" + album.plaadiNimi.title() + "\t" + aasta + "\t" + laul.lauluNimi.title()
+        fail = open("albumid.txt", "a", encoding="UTF-8")
+        fail.write("\n" + laulupealkiri)
+
+        b = input("Kas soovite veel laule lisada? jah/ei")
+        if b == "jah":
+            seis = "aktiivne"
+        else:
+            seis = "inaktiivne"
+            fail.close()
+
+else:
+    pass
 
 y = input("Kas soovid näha vinüülplaatide nimekirja? jah/ei ")
 
@@ -23,21 +62,39 @@ albumid = []
 def albumiteKriipsud():
     for rida in fail:
         elemendid = rida.split("\t")
-        esineja = elemendid[0]
-        album = elemendid[1]
-        albumid.append(album)
+        esineja = esitaja(elemendid[0])
+        album = plaat(elemendid[1])
+        albumid.append(elemendid[1])
         aasta = elemendid[2]
-        laul = elemendid[3]
+        laul = laulud(elemendid[3])
         if len(albumid) > 1:
             if albumid[-2] != albumid[-1]:
                 print()
                 print("--------------------------------------------")
                 print()
-        print(rida)
+        print(esineja.esitajaNimi, album.plaadiNimi, aasta, laul.lauluNimi)
 
 
 if y == "jah":
     albumiteKriipsud()
+
+else:
+    w = input("Kas soovid otsida laulu? jah/ei ")
+
+    if w == "jah":
+
+        for rida in fail:
+            albumid.append(rida)
+
+        nimi = input("Sisesta albumi või artisti nimi: ")
+        x = nimi.title()
+
+        for str in albumid:
+            if x in str:
+                print(str)
+
+    else:
+        print("Ei soovinud midagi!")
 
 
 fail.close()
