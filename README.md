@@ -1,6 +1,6 @@
 # ITA19_Kordamine
 
-####Koostaja: Anette Aguraiuja [GITHUB](https://github.com/AnetteAgura/parimad_praktikad "Anette Aguraiuja Github") 
+#### Koostaja: Anette Aguraiuja [GITHUB](https://github.com/AnetteAgura/parimad_praktikad "Anette Aguraiuja Github") 
 
 See programm võimaldab sorteerida ja paremini organiseerida oma vinüüliplaatide kogu.
 Programmi tegevus on kasutaja jaoks tehtud võimalikult kergeks, et kiirelt ja mugavalt leida vajalik informatsioon kiirelt!
